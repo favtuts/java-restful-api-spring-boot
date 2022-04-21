@@ -1,5 +1,6 @@
 package com.bts.imageclient.rest.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,12 +56,26 @@ public class CatalogImageController {
     /* API-9: Fully update (overwrite) the image with the specified image-id, body includes <image-json-data> && <binary-data>*/
     @PUT
     @Path("/{image-id}")
-    public CatalogImage replaceImage(@PathParam("image-id") String imageId, CatalogImage image) {return null;}
+    public CatalogImage replaceImage(@PathParam("image-id") String imageId, CatalogImage image) {
+        System.out.println(image.toString());
+        image.setImagePath("http://www.nowhere.com/changed-path.jpg");
+        return image;
+    }
 
     /* API-11: Update an image with the specified image-id, body includes <image-json-data> */
     @PATCH
     @Path("/{image-id}")
-    public CatalogImage updateImage(@PathParam("image-id") String imageId, CatalogImage image) {return null;}
+    public CatalogImage updateImage(@PathParam("image-id") String imageId, CatalogImage image) {
+        System.out.println(image.toString());
+        image.setImageId("http://www.nowhere.com/patch-path.jpg");
+        CatalogMetaDatum val = image.getMetaData().get(0);
+        val.setName("patch");
+        val.setValue("patch-value");
+        List<CatalogMetaDatum> theList = new ArrayList<CatalogMetaDatum>();
+        theList.add(val);
+        image.setMetaData(theList);
+        return image;
+    }
 
     /* API-13: Delete an image with the specified image-id. */
     @DELETE
