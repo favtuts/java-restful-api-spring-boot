@@ -31,8 +31,14 @@ public class CatalogImageController {
     /* API-2: Return an image with the specified image-id. */
     @GET
     @Path("/{image-id}")
-    public CatalogImage getImage(@PathParam("image-id") String imageId) {        
-        return CatalogImageTestGenerator.generateTestImage(imageId);
+    // public CatalogImage getImage(@PathParam("image-id") String imageId) {        
+    //     return CatalogImageTestGenerator.generateTestImage(imageId);
+    // }
+    public Response getImage(@PathParam("image-id") String imageId)
+    {
+        CatalogImage theImage = CatalogImageTestGenerator.generateTestImage(imageId);
+        Response resp = Response.status(Response.Status.OK).entity(theImage).build();
+        return resp;
     }
 
     /* API-4: Get all images that match the metadata provided. */
