@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import com.bts.exceptions.CatalogImageDoesNotExistException;
 import com.bts.imageclient.rest.api.types.CatalogImage;
 import com.bts.imageclient.rest.api.types.CatalogMetaDatum;
 import com.bts.imageclient.rest.api.types.util.CatalogImageTestGenerator;
@@ -37,11 +38,16 @@ public class CatalogImageController {
     // public CatalogImage getImage(@PathParam("image-id") String imageId) {        
     //     return CatalogImageTestGenerator.generateTestImage(imageId);
     // }
-    public Response getImage(@PathParam("image-id") String imageId)
+    public CatalogImage getImage(@PathParam("image-id") String imageId)
     {
-        CatalogImage theImage = CatalogImageTestGenerator.generateTestImage(imageId);
-        Response resp = Response.status(Response.Status.OK).entity(theImage).build();
-        return resp;
+        // generates a null pointer exception when passing “foo” as the image identifier.
+        if(imageId.equals("foo"))
+        {
+            CatalogMetaDatum x = null;
+            x.setName("foo");
+        }
+
+        return CatalogImageTestGenerator.generateTestImage(imageId);
     }
 
     /* API-4: Get all images that match the metadata provided. */
@@ -90,7 +96,11 @@ public class CatalogImageController {
     @DELETE
     @Path("/{image-id}")
     // public Response deleteImage(@PathParam("image-id") String imageId) {return null;}
-    public Response deleteImage(@PathParam("image-id") String imageId) {
+    public Response deleteImage(@PathParam("image-id") String imageId) throws CatalogImageDoesNotExistException {
+
+        //throws a CatalogImageDoesNotExistException if the CatalogImage’s identifier is “foo.”
+        if(imageId.equals("foo")) throw new CatalogImageDoesNotExistException();
+        
         return Response.ok().entity("{\"CatalogImage deleted successfully.\"}").build();
     }
 }

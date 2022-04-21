@@ -3,6 +3,7 @@ package com.bts.imageclient.SpringApiTutorial;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 
+import com.bts.imageclient.config.CatalogImageDoesNotExistExceptionMapper;
 import com.bts.imageclient.rest.api.controller.CatalogClientController;
 import com.bts.imageclient.rest.api.controller.CatalogImageController;
 
@@ -20,6 +21,7 @@ public class JerseyConfig extends ResourceConfig {
     
     @PostConstruct
     public void init() {
+        register(CatalogImageDoesNotExistExceptionMapper.class);
         configSwagger();
         configEndPoints();
     }
