@@ -38,16 +38,24 @@ public class CatalogImageController {
     // public CatalogImage getImage(@PathParam("image-id") String imageId) {        
     //     return CatalogImageTestGenerator.generateTestImage(imageId);
     // }
-    public CatalogImage getImage(@PathParam("image-id") String imageId)
-    {
-        // generates a null pointer exception when passing “foo” as the image identifier.
-        if(imageId.equals("foo"))
-        {
-            CatalogMetaDatum x = null;
-            x.setName("foo");
-        }
 
-        return CatalogImageTestGenerator.generateTestImage(imageId);
+    // public CatalogImage getImage(@PathParam("image-id") String imageId)
+    // {
+    //     // generates a null pointer exception when passing “foo” as the image identifier.
+    //     if(imageId.equals("foo"))
+    //     {
+    //         CatalogMetaDatum x = null;
+    //         x.setName("foo");
+    //     }
+
+    //     return CatalogImageTestGenerator.generateTestImage(imageId);
+    // }
+
+    public Response getImage(@PathParam("image-id") String imageId)
+    {
+        CatalogImage theImage = CatalogImageTestGenerator.generateTestImage(imageId);
+        Response resp = Response.status(Response.Status.OK).entity(theImage).build();
+        return resp;
     }
 
     /* API-4: Get all images that match the metadata provided. */

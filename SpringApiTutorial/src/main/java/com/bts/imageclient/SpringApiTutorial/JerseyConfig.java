@@ -6,6 +6,7 @@ import javax.ws.rs.ApplicationPath;
 import com.bts.imageclient.config.CatalogImageDoesNotExistExceptionMapper;
 import com.bts.imageclient.rest.api.controller.CatalogClientController;
 import com.bts.imageclient.rest.api.controller.CatalogImageController;
+import com.bts.imageclient.rest.api.controller.v2.CatalogImageControllerV2;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.wadl.internal.WadlResource;
@@ -29,6 +30,7 @@ public class JerseyConfig extends ResourceConfig {
     private void configEndPoints() {
         register(CatalogClientController.class);
         register(CatalogImageController.class);
+        register(CatalogImageControllerV2.class);
     }
 
     private void configSwagger() {

@@ -8,6 +8,11 @@ To compile the project
 mvn compile
 ```
 
+To compile then test
+```
+mvn clean install
+```
+
 To run the Spring Boot application
 ```
 mvn spring-boot:run
