@@ -18,8 +18,11 @@ import com.bts.imageclient.rest.api.types.CatalogImage;
 import com.bts.imageclient.rest.api.types.CatalogMetaDatum;
 import com.bts.imageclient.rest.api.types.util.CatalogImageTestGenerator;
 
+import io.swagger.annotations.Api;
+
 @Path("/images")
 @Produces("application/json")
+@Api(value = "CatalogImageController Resource", produces = "application/json")
 public class CatalogImageController {
 
     @GET

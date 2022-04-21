@@ -29,6 +29,7 @@ hs_err_pid*
 ##############
 # allow generated Spring Boot app
 !SpringApiTutorial.zip
+!swagger-ui-4.10.3.zip
 ##############
 
 
