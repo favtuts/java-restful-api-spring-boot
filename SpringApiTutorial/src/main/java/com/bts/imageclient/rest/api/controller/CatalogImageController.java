@@ -86,5 +86,8 @@ public class CatalogImageController {
     /* API-13: Delete an image with the specified image-id. */
     @DELETE
     @Path("/{image-id}")
-    public Response deleteImage(@PathParam("image-id") String imageId) {return null;}
+    // public Response deleteImage(@PathParam("image-id") String imageId) {return null;}
+    public Response deleteImage(@PathParam("image-id") String imageId) {
+        return Response.ok().entity("{\"CatalogImage deleted successfully.\"}").build();
+    }
 }
