@@ -3,6 +3,7 @@ package com.bts.imageclient.SpringApiTutorial;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 
+import com.bts.imageclient.rest.api.controller.CatalogClientController;
 import com.bts.imageclient.rest.api.controller.CatalogImageController;
 
 import org.glassfish.jersey.server.ResourceConfig;
@@ -18,6 +19,7 @@ public class JerseyConfig extends ResourceConfig {
     }
 
     private void configEndPoints() {
+        register(CatalogClientController.class);
         register(CatalogImageController.class);
     }
 }
