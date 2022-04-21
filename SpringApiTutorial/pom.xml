@@ -33,8 +33,7 @@
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.5.4</version>
+            <artifactId>jackson-databind</artifactId>          
         </dependency>
 	</dependencies>	
 	<build>
@@ -50,6 +49,8 @@
                 <configuration>
                     <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
                     <targetPackage>com.bts.imageclient.rest.api.types</targetPackage>
+					<useTitleAsClassname>true</useTitleAsClassname>
+    				<includeAdditionalProperties>false</includeAdditionalProperties>
                 </configuration>
                 <executions>
                     <execution>
